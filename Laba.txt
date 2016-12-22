@@ -1,0 +1,158 @@
+#include <iostream>
+using namespace std;
+class Transport{
+public:
+virtual void out() = 0;
+ virtual void get() = 0;
+double weight;
+    int seats;
+    
+    void basicInfo(){
+        cout << " - вага: " << weight << endl;
+        cout << " - м≥сць дл€ сид≥нн€: " << seats << endl;
+        cout << endl;
+}
+};
+
+class PrivateTransport: public Transport{
+public:
+    virtual void out() = 0;
+};
+
+class PublicTransport: public Transport{
+public:
+    virtual void out() = 0;
+    double price;
+    int standPlaces;
+    
+ void get(){
+        cout << "¬вед≥ть вагу транспорту: ";
+        cin >> weight;
+        
+        cout << "¬вед≥ть к≥льк≥сть м≥сць дл€ сид≥нн€: ";
+        cin >> seats;
+        
+        cout << "¬вед≥ть ц≥ну за проњзд: ";
+        cin >> price;
+        
+        cout << "¬вед≥ть к≥льк≥сть м≥сць дл€ сто€нн€: ";
+        cin >> standPlaces;
+ }
+};
+
+class FuelPublicTransport: public PublicTransport{
+public:
+    virtual void out() = 0;
+};
+
+class ElectricPublicTransport:public PublicTransport{
+public:
+    virtual void out() = 0;
+};
+
+class Car: public PrivateTransport{
+public:
+    void get(){
+        cout << "¬вед≥ть вагу транспорту: ";
+        cin >> weight;
+        
+        cout << "¬вед≥ть к≥льк≥сть м≥сць дл€ сид≥нн€: ";
+        cin >> seats;
+ }
+    void out(){
+        cout << '\0';
+ }
+};
+
+class LightCar: public PrivateTransport{
+public:
+    void out(){
+        cout << '\0';
+ }
+    void get(){
+        cout << "¬вед≥ть вагу транспорту: ";
+        cin >> weight;
+        
+        cout << "¬вед≥ть к≥льк≥сть м≥сць дл€ сид≥нн€: ";
+        cin >> seats;
+ }
+};
+
+class Lorry: public PrivateTransport{
+public:
+    double maxWeight;
+    
+    void out(){
+        cout << " - вантажоп≥йомн≥сть: " << maxWeight << endl;
+    }
+    
+    void get(){
+        cout << "¬вед≥ть вагу транспорту: ";
+        cin >> weight;
+        
+        cout << "¬вед≥ть к≥льк≥сть м≥сць дл€ сид≥нн€: ";
+        cin >> seats;
+        
+        cout << "¬вед≥ть максимальну вагу вантажу: ";
+        cin >> maxWeight;
+    }
+};
+
+class Bus: public FuelPublicTransport{
+public:
+    void out(){
+        cout << " - ц≥на за проњзд: " << price << endl;
+        cout << " - м≥сц€ дл€ сто€чих: " << standPlaces << endl;
+    }
+};
+
+class Trolleybus: public ElectricPublicTransport{
+public:
+    void out(){
+        cout << " - ц≥на за проњзд: " << price << endl;
+        cout << " - м≥сц€ дл€ сто€чих: " << standPlaces << endl;
+    }
+};
+
+class Tram: public ElectricPublicTransport{
+public:
+    void out(){
+        cout << " - ц≥на за проњзд: " << price << endl;
+        cout << " - м≥сц€ дл€ сто€чих: " << standPlaces << endl;
+    }
+};
+
+
+
+
+
+int main(){
+    setlocale (LC_CTYPE, "Ukrainian");
+    int transportType;
+    Transport *transport[6];  //transport array
+    
+    transport[1] = new Car;
+    transport[2] = new LightCar;
+    transport[3] = new Lorry;
+    transport[4] = new Bus;
+    transport[5] = new Trolleybus;
+    transport[6] = new Tram;
+    
+    cout << "“ранспортн≥ засоби: \n";
+    cout << " 1. јвтомоб≥ль\n";
+    cout << " 2. Ћегковий автомоб≥ль\n";
+    cout << " 3. ¬антажний автомоб≥ль\n";
+    cout << " 4. јвтобус\n";
+    cout << " 5. “ролейбус\n";
+    cout << " 6. “рамвай\n";
+    
+    cin >> transportType;
+    
+    transport[transportType]->get();
+    transport[transportType]->out();
+    transport[transportType]->basicInfo();
+    
+    cout << endl;
+
+    return 0;
+}
