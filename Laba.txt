@@ -11,7 +11,7 @@ double weight;
         cout << " - вага: " << weight << endl;
         cout << " - місць для сидіння: " << seats << endl;
         cout << endl;
-}
+   }
 };
 
 class PrivateTransport: public Transport{
@@ -37,7 +37,7 @@ public:
         
         cout << "Введіть кількість місць для стояння: ";
         cin >> standPlaces;
- }
+  }
 };
 
 class FuelPublicTransport: public PublicTransport{
@@ -58,24 +58,24 @@ public:
         
         cout << "Введіть кількість місць для сидіння: ";
         cin >> seats;
- }
+    }
     void out(){
         cout << '\0';
- }
+    }
 };
 
 class LightCar: public PrivateTransport{
 public:
     void out(){
         cout << '\0';
- }
+    }
     void get(){
         cout << "Введіть вагу транспорту: ";
         cin >> weight;
         
         cout << "Введіть кількість місць для сидіння: ";
         cin >> seats;
- }
+    }
 };
 
 class Lorry: public PrivateTransport{
